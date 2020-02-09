@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_alll"
+    app:startDestination="@id/restaurantFragment">
+
+    <fragment
+        android:id="@+id/restaurantFragment"
+        android:name="com.example.myall1.ui.fragments.restaurantFragment.RestaurantFragment"
+        android:label="fragment_show_restaurant"
+        tools:layout="@layout/fragment_show_restaurant" />
+</navigation>

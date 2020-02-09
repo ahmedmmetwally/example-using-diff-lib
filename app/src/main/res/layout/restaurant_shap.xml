@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.myall1.adapters.AdapterUtil" />
+
+        <variable
+            name="restaurantData"
+            type="com.example.myall1.data.model.listOfRestaurants.ListOfRestaurantsDatum" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="match_parent"
+
+
+            android:background="@drawable/rectangel_shapee_greylight"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_home_txt_open_close"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@{restaurantData.availability}" />
+
+            <ImageView
+                android:id="@+id/fragment_home_img_on_off"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp" />
+
+            <LinearLayout
+                android:layout_width="@dimen/_170sdp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_23sdp"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/_60sdp">
+
+                <TextView
+                    android:id="@+id/fragment_home_txt_restaurnt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{restaurantData.name}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_23ssp" />
+
+                <RatingBar
+                    android:id="@+id/fragment_home_rtb_rating_bar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="@{restaurantData.rate.floatValue()}"
+                    android:stepSize=".1"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="الحد الادنى للطلب :" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_txt_requst_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{restaurantData.minimumCharger}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="رسوم التوصيل :" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_txt_delevery_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{restaurantData.deliveryCost}" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fragment_home_img_restaurnt_profile"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:loadImag="@{restaurantData.photoUrl}" />
+
+    </RelativeLayout>
+</layout>
