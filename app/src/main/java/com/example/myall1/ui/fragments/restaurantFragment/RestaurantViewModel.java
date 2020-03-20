@@ -15,7 +15,7 @@ public class RestaurantViewModel extends ViewModel {
 
     private RestaurantDataSourceFactory restaurantDataSourceFactory = new RestaurantDataSourceFactory();
     //  private Repository_res repository_res = new Repository_res();
-    private LiveData<RestaurantDataSource> restaurantDataSourceLiveData = restaurantDataSourceFactory.getMutableLiveData();
+   // private LiveData<RestaurantDataSource> restaurantDataSourceLiveData = restaurantDataSourceFactory.getMutableLiveData();
 
     private Executor executor = Executors.newFixedThreadPool(5);
 

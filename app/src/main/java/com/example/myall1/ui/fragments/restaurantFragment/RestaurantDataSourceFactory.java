@@ -5,15 +5,15 @@ import androidx.paging.DataSource;
 
 public class RestaurantDataSourceFactory extends DataSource.Factory {
     private RestaurantDataSource restaurantDataSource = new RestaurantDataSource();
-    private MutableLiveData<RestaurantDataSource> mutableLiveData = new MutableLiveData<>();
+   // private MutableLiveData<RestaurantDataSource> mutableLiveData = new MutableLiveData<>();
 
     @Override
     public DataSource create() {
-        mutableLiveData.postValue(restaurantDataSource);
+      //  mutableLiveData.postValue(restaurantDataSource);
         return restaurantDataSource;
     }
 
-    public MutableLiveData<RestaurantDataSource> getMutableLiveData() {
-        return mutableLiveData;
-    }
+//    public MutableLiveData<RestaurantDataSource> getMutableLiveData() {
+//        return mutableLiveData;
+//    }
 }
