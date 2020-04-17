@@ -21,15 +21,16 @@ public class HomeFragmentAdapter extends PagedListAdapter<ListOfRestaurantsDatum
     public HomeFragmentAdapter(Context context) {
         super(ListOfRestaurantsDatum.CALLBACK);
         this.context = context;
-
-
     }
 
     @NonNull
     @Override
     public ViewHolderr onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RestaurantShapBinding restaurantShapBinding = DataBindingUtil.inflate(LayoutInflater.from(context)
-                , R.layout.restaurant_shap, parent, false);
+//        RestaurantShapBinding restaurantShapBinding = DataBindingUtil.inflate(LayoutInflater.from(context)
+//                , R.layout.restaurant_shap, parent, false);
+//        return new ViewHolderr(restaurantShapBinding);
+        RestaurantShapBinding restaurantShapBinding=DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.restaurant_shap,
+                parent,false);
         return new ViewHolderr(restaurantShapBinding);
     }
 

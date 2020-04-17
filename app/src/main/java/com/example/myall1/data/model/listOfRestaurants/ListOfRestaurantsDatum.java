@@ -266,6 +266,7 @@ public class ListOfRestaurantsDatum {
         return this;
     }
 
+
     public static final DiffUtil.ItemCallback<ListOfRestaurantsDatum> CALLBACK = new DiffUtil.ItemCallback<ListOfRestaurantsDatum>() {
         @Override
         public boolean areItemsTheSame(@NonNull ListOfRestaurantsDatum oldItem, @NonNull ListOfRestaurantsDatum newItem) {

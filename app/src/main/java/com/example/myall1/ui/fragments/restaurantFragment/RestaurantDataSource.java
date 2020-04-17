@@ -27,41 +27,42 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantDataSource extends PageKeyedDataSource<Integer, ListOfRestaurantsDatum> {
-    List<ListOfRestaurantsDatum> restaurantList ;
-    private static final String TAG = "ahmed";
+    private List<ListOfRestaurantsDatum> listOfRestaurantsDatumList;
 
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, ListOfRestaurantsDatum> callback) {
-        Single<List<ListOfRestaurantsDatum>> single=RetrofitSofra.getInstance().getRestaurants(1)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).map(new Function<ListOfRestaurants, List<ListOfRestaurantsDatum>>() {
+        Single<List<ListOfRestaurantsDatum>> single = RetrofitSofra.getInstance().getRestaurants(1)
+                .observeOn(Schedulers.io())
+                .map(new Function<ListOfRestaurants, List<ListOfRestaurantsDatum>>() {
                     @Override
                     public List<ListOfRestaurantsDatum> apply(ListOfRestaurants listOfRestaurants) throws Exception {
-                        restaurantList=new ArrayList<>();
-                        restaurantList.addAll(listOfRestaurants.getData().getData());
-                        return restaurantList;
+                        if (listOfRestaurants != null && listOfRestaurants.getStatus() == 1) {
+                            listOfRestaurantsDatumList = listOfRestaurants.getData().getData();
+
+                        }
+                        return listOfRestaurantsDatumList;
                     }
                 });
-      SingleObserver<List<ListOfRestaurantsDatum>> singleObserver=new SingleObserver<List<ListOfRestaurantsDatum>>() {
-          @Override
-          public void onSubscribe(Disposable d) {
+        SingleObserver<List<ListOfRestaurantsDatum>> singleObserver = new SingleObserver<List<ListOfRestaurantsDatum>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
 
-          }
+            }
 
-          @Override
-          public void onSuccess(List<ListOfRestaurantsDatum> listOfRestaurantsData) {
-              if ( restaurantList != null) {
-                  callback.onResult(restaurantList, null,2);
-              }
-          }
+            @Override
+            public void onSuccess(List<ListOfRestaurantsDatum> listOfRestaurantsData) {
+                if ( listOfRestaurantsData != null)
+             callback.onResult(listOfRestaurantsData, null,2);
+            }
 
-          @Override
-          public void onError(Throwable e) {
+            @Override
+            public void onError(Throwable e) {
 
-          }
-      };
+            }
+        };
+        single.subscribe(singleObserver);
 
-single.subscribe(singleObserver);
+
 
     }
 
@@ -72,17 +73,19 @@ single.subscribe(singleObserver);
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull final LoadCallback<Integer, ListOfRestaurantsDatum> callback) {
-        Single<List<ListOfRestaurantsDatum>> single=RetrofitSofra.getInstance().getRestaurants(params.key)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).map(new Function<ListOfRestaurants, List<ListOfRestaurantsDatum>>() {
+        Single<List<ListOfRestaurantsDatum>> single = RetrofitSofra.getInstance().getRestaurants(params.key)
+                .observeOn(Schedulers.io())
+                .map(new Function<ListOfRestaurants, List<ListOfRestaurantsDatum>>() {
                     @Override
                     public List<ListOfRestaurantsDatum> apply(ListOfRestaurants listOfRestaurants) throws Exception {
-                        restaurantList=new ArrayList<>();
-                        restaurantList.addAll(listOfRestaurants.getData().getData());
-                        return restaurantList;
+                        if (listOfRestaurants != null && listOfRestaurants.getStatus() == 1) {
+                            listOfRestaurantsDatumList = listOfRestaurants.getData().getData();
+
+                        }
+                        return listOfRestaurantsDatumList;
                     }
                 });
-        SingleObserver<List<ListOfRestaurantsDatum>> singleObserver=new SingleObserver<List<ListOfRestaurantsDatum>>() {
+        SingleObserver<List<ListOfRestaurantsDatum>> singleObserver = new SingleObserver<List<ListOfRestaurantsDatum>>() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -90,9 +93,8 @@ single.subscribe(singleObserver);
 
             @Override
             public void onSuccess(List<ListOfRestaurantsDatum> listOfRestaurantsData) {
-                if ( restaurantList != null) {
-                    callback.onResult(restaurantList,params.key+1);
-                }
+                if ( listOfRestaurantsData != null)
+                    callback.onResult(listOfRestaurantsData, params.key+1);
             }
 
             @Override
@@ -100,10 +102,11 @@ single.subscribe(singleObserver);
 
             }
         };
+        single.subscribe(singleObserver);
+
 
     }
 }
-
 
 
 //  RetrofitSofra.getInstance().getRestaurants(1).enqueue(new Callback<ListOfRestaurants>() {

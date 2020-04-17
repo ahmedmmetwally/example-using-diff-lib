@@ -4,7 +4,7 @@
 
     <data>
 
-        <import type="com.example.myall1.adapters.AdapterUtil" />
+
 
         <variable
             name="restaurantData"

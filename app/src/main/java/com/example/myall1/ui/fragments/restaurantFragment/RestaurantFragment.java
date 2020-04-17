@@ -28,11 +28,11 @@ import com.example.myall1.data.model.listOfRestaurants.ListOfRestaurantsDatum;
  */
 public class RestaurantFragment extends Fragment {
     private PagedList<ListOfRestaurantsDatum> restaurantsData;
-
     private HomeFragmentAdapter mAdapter;
     private LinearLayoutManager linearLayoutManager;
     private RestaurantViewModel restaurantViewModel;
     FragmentShowRestaurantBinding fragmentShowRestaurantBinding;
+
 
     public RestaurantFragment() {
         // Required empty public constructor
@@ -73,7 +73,7 @@ public class RestaurantFragment extends Fragment {
         mAdapter = new HomeFragmentAdapter(getContext());
         mAdapter.submitList(restaurantsData);
         fragmentShowRestaurantBinding.homeFragmentRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+      //  mAdapter.notifyDataSetChanged();
 
 
     }
